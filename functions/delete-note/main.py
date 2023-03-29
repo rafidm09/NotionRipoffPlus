@@ -4,12 +4,15 @@ import boto3
 dynamodb_resource = boto3.resource('dynamodb')
 table = dynamodb_resource.Table('lotion-30152524')
 
-response = table.get_item(
-    Key={
-        'email': 'niggamoney@420.com',
-        'id': 'cock_enthusiast'
-    }
-)
+def lambda_handler(event, context):
+    table.delete_item(
+        Key={
+            'email': event['email'],
+            'id': event['id']
+        }
+    )
 
-item = response['Item']
-print(item)
+    return {
+        'statusCode': 202,
+        'message': 'note deleted successfully'
+    }

@@ -4,10 +4,16 @@ import boto3
 dynamodb_resource = boto3.resource('dynamodb')
 table = dynamodb_resource.Table('lotion-30152524')
 
-note = {
-        'email': 'niggamoney@420.com',
-        'id': 'cock_enthusiast',
-        'body': 'Out here with lotion on my dick rn cuh, jerking my dick off cuh',
+def lambda_handler(event, context):
+    note = {
+        'email': event['email'],
+        'id': event['id'],
+        'body': event['body']
     }
 
-table.put_item(Item=note)
+    table.put_item(Item=note)
+
+    return {
+        'statusCode': 200,
+        'message': 'note added successfully'
+    }

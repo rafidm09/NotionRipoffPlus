@@ -10,7 +10,7 @@ const localStorageKey = "lotion-v1";
 function Layout() {
   const navigate = useNavigate();
   const mainContainerRef = useRef(null);
-  const [collapse, setCollapse] = useState(false);
+  const [collapse, setCollapse] = useState(true);
   const [notes, setNotes] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [currentNote, setCurrentNote] = useState(-1);
